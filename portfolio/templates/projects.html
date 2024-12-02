@@ -1,0 +1,95 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block head %}
+    <style>
+        .dialog::backdrop {
+            background: rgba(0, 0, 0, 0.31);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(9.7px);
+            -webkit-backdrop-filter: blur(9.7px);
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+    </style>
+    
+{% endblock %}
+
+{% block content %}
+    <main class="mx-3 py-10 px-12">
+        <article>
+            <header>
+                <div class="text-2xl font-bold text-white mb-10 flex flex-col justify-center items-center">
+                    <h4>
+                        Projects
+                    </h4>
+                    <h4 class="text-base font-normal text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-amber-300">
+                        Here are some of the projects I have worked on. Not all are finished
+                    </h4>
+                </div>
+            </header>
+            <section>
+                <div data-aos="zoom-in">
+                    <div class="grid grid-cols-1 gap-4 pb-32 md:grid-cols-3 md:gap-3 2xl:gap-5">
+                        {% for project in projects %}
+                            <div>
+                                <div class="flex flex-col items-center gap-2 rounded bg-[#1e1e1f] hover:bg-[#282828] border border-[#383838] rounded-xl text-amber-50 md:gap-3 px-5 py-5 transition-all hover:translate-y-[-10px]">
+                                    <div aria-label="images" class="flex h-12 w-12 items-center justify-center p-0 h-full w-full lg:p-0">
+                                        <img onclick="openDialog('dialog{{project.title}}')" loading="lazy" class="w-full h-48 object-cover rounded-xl" src="{{project.image|first}}" alt="" />
+                                    </div>
+                                    <div aria-label="content" class="w-full flex flex-col gap-2 items-center text-sm md:text-base lg:text-lg">
+                                        <h1 class="font-medium text-secondary">
+                                            {{ project.title }}
+                                        </h1>
+                                        <p class="w-full text-left text-[10px] text-[#c1c1c1] md:text-xs lg:text-sm">
+                                            {{ project.description }}
+                                        </p>
+                                        <div class="w-full mt-4 text-normal text-sm text-left text-amber-200">
+                                            {{ project.techstack }}
+                                        </div>
+                                        <div class="w-full flex justify-end">
+                                            <div class="flex cursor-pointer items-end gap-2 text-primary">
+                                                <a href="{{project.github}}">
+                                                    <img src="{% static 'media/github.svg'%}" />
+                                                </a>
+                                                {% if project.websitelink %}
+                                                    <a href="{{project.websitelink}}">
+                                                        <img src="{% static 'media/view.svg'%}" />
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <dialog id="dialog{{project.title}}" class="dialog bg-transparent">
+                                        <div class="w-[1280px] w-full flex items-center gap-3">
+                                            <div>
+                                                <button onclick="previousImage('images' + '{{project.title}}')" aria-label="button back" class="text-white ">
+                                                    <img src="{% static 'media/chevron-left.svg'%}" />
+                                                </button>
+                                            </div>
+                                            <div class="flex space-x-7 items-center overflow-hidden w-[1000px]">
+                                                <div id="images{{project.title}}" class="flex transition-all duration-300 ease-in-out">
+                                                    {% for image in project.image %}
+                                                        <img class="w-full h-full object-cover" src="{{image}}" alt="" />
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <button onclick="nextImage('images' + '{{project.title}}', '{{project.image|length}}')" aria-label="button next" class="text-white ">
+                                                <img src="{% static 'media/chevron-right.svg'%}" />
+                                            </button>
+                                        </div>
+                                    </dialog>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+    <script src="{% static 'scripts/project.js'%}"></script>
+{% endblock %}
