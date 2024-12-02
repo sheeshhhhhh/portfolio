@@ -13,3 +13,5 @@ __pycache__/
 # Other common files
 .DS_Store
 *.egg-info/
+
+staticfiles/
