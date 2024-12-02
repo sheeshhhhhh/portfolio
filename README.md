@@ -63,7 +63,7 @@ in `launch.json` that marscode will provide in order to run just paste this
           "name": "Start Application",
           "type": "debugpy",
           "request": "launch",
-          "program": "pos/manage.py",
+          "program": "portfolio/manage.py",
           "args": [
               "runserver",
               "0.0.0.0:8080"
