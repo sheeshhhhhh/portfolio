@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'portfolio'
 ]
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'portfolio.portfolio.urls'
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
