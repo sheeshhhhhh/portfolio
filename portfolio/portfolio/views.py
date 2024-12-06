@@ -60,6 +60,7 @@ def projects(request):
     return render(request, 'projects.html', { "navigation": "projects", "projects": projects })
 
 def about(request):
+
     techStack = [
         { 'name': "Python", 'icon': "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png", 'knowledgeLevel': "Intermediate" },
         { 'name': "Django", 'icon': "https://cdn.worldvectorlogo.com/logos/django.svg", 'knowledgeLevel': "Beginner" },

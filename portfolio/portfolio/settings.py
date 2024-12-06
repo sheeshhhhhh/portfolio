@@ -24,10 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qs89$pmey$dn@**8m7r92a#@rz882@t9-63p++x1p79xk(+j8y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    'https://portfolio-2655.onrender.com/'
+    'portfolio-2655.onrender.com',
+    '127.0.0.1'
 ]
 
 
@@ -40,10 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'portfolio'
 ]
 
-ROOT_URLCONF = 'portfolio.portfolio.urls'
+ROOT_URLCONF = 'portfolio.urls'
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -139,3 +139,4 @@ STATICFILES_DIRS = [
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    ROOT_URLCONF = 'portfolio.portfolio.urls'
