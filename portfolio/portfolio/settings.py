@@ -27,8 +27,9 @@ SECRET_KEY = 'django-insecure-qs89$pmey$dn@**8m7r92a#@rz882@t9-63p++x1p79xk(+j8y
 DEBUG = True
 
 ALLOWED_HOSTS = [
+
     'portfolio-2655.onrender.com',
-    '127.0.0.1'
+    '127.0.0.1',
 ]
 
 
@@ -140,3 +141,5 @@ if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     ROOT_URLCONF = 'portfolio.portfolio.urls'
+
+
