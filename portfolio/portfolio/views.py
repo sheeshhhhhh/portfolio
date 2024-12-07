@@ -59,22 +59,13 @@ def projects(request):
         }
     ]
 
-    project = models.Project.objects.prefetch_related('images').all()
+    projects = models.Project.objects.prefetch_related('images').all()
     return render(request, 'projects.html', { "navigation": "projects", "projects": projects })
 
 def about(request):
 
     techStack = models.Skills.objects.all()
 
-    tools = [
-        { 'name': "Git", 'icon': "https://cdn.worldvectorlogo.com/logos/git-icon.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "Docker", 'icon': "https://cdn.worldvectorlogo.com/logos/docker-4.svg", 'knowledgeLevel': "Beginner" },
-        { 'name': "Postman", 'icon': "https://cdn.worldvectorlogo.com/logos/postman.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "NPM", 'icon': "https://cdn.worldvectorlogo.com/logos/npm.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "VS Code", 'icon': "https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg", 'knowledgeLevel': "Advanced" },
-    ]
-
-
     schools = models.Education.objects.all()
 
-    return render(request, 'about.html', { "navigation": "about", "techStack": techStack, "tools": tools, "schools": schools })
+    return render(request, 'about.html', { "navigation": "about", "techStack": techStack, "schools": schools })

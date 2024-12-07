@@ -24,11 +24,11 @@
         <article>
             <header>
                 <div class="text-2xl font-bold text-white mb-10 flex flex-col justify-center items-center">
-                    <h4>
+                    <h4 class="mb-2">
                         Projects
                     </h4>
                     <h4 class="text-base font-normal text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-amber-300">
-                        Here are some of the projects I have worked on. Not all are finished
+                        Here are some of the projects I have worked on. Not all are finished. you can also visit my github repo to look at more of my projects.
                     </h4>
                 </div>
             </header>
@@ -39,7 +39,7 @@
                             <div>
                                 <div class="flex flex-col items-center gap-2 rounded bg-[#1e1e1f] hover:bg-[#282828] border border-[#383838] rounded-xl text-amber-50 md:gap-3 px-5 py-5 transition-all hover:translate-y-[-10px]">
                                     <div aria-label="images" class="flex h-12 w-12 items-center justify-center p-0 h-full w-full lg:p-0">
-                                        <img onclick="openDialog('dialog{{project.title}}')" loading="lazy" class="w-full h-48 object-cover rounded-xl" src="{{project.image|first}}" alt="" />
+                                        <img onclick="openDialog('dialog{{project.title}}')" loading="lazy" class="w-full h-48 object-cover rounded-xl" src="{{project.images.all.0.image.url}}" alt="" />
                                     </div>
                                     <div aria-label="content" class="w-full flex flex-col gap-2 items-center text-sm md:text-base lg:text-lg">
                                         <h1 class="font-medium text-secondary">
@@ -56,8 +56,8 @@
                                                 <a href="{{project.github}}">
                                                     <img src="{% static 'media/github.svg'%}" />
                                                 </a>
-                                                {% if project.websitelink %}
-                                                    <a href="{{project.websitelink}}">
+                                                {% if project.website_link %}
+                                                    <a href="{{project.website_link}}">
                                                         <img src="{% static 'media/view.svg'%}" />
                                                     </a>
                                                 {% endif %}
@@ -65,7 +65,10 @@
                                         </div>
                                     </div>
                                     <dialog id="dialog{{project.title}}" class="dialog bg-transparent">
-                                        <div class="w-[1280px] w-full flex items-center gap-3">
+                                        <div class="w-[1280px] w-full flex items-center gap-3 relative">
+                                            <div> 
+                                                <img onclick="closeDialog('dialog{{project.title}}')" aria-label="button close" class="text-white absolute top-0 right-0" src="{% static 'media/close.svg'%}" />
+                                            </div>
                                             <div>
                                                 <button onclick="previousImage('images' + '{{project.title}}')" aria-label="button back" class="text-white ">
                                                     <img src="{% static 'media/chevron-left.svg'%}" />
@@ -73,12 +76,12 @@
                                             </div>
                                             <div class="flex space-x-7 items-center overflow-hidden w-[1000px]">
                                                 <div id="images{{project.title}}" class="flex transition-all duration-300 ease-in-out">
-                                                    {% for image in project.image %}
-                                                        <img class="w-full h-full object-cover" src="{{image}}" alt="" />
+                                                    {% for image in project.images.all %}
+                                                        <img class="w-full h-full object-cover" src="{{image.image.url}}" alt="" />
                                                     {% endfor %}
                                                 </div>
                                             </div>
-                                            <button onclick="nextImage('images' + '{{project.title}}', '{{project.image|length}}')" aria-label="button next" class="text-white ">
+                                            <button onclick="nextImage('images' + '{{project.title}}', '{{project.images.all|length}}')" aria-label="button next" class="text-white ">
                                                 <img src="{% static 'media/chevron-right.svg'%}" />
                                             </button>
                                         </div>

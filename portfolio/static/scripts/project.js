@@ -43,3 +43,8 @@ function previousImage(projecttitle) {
 
     images.style.transform = `translateX(${parseInt(previous) + 100}%`;
 }
+
+function closeDialog(dialogId) {
+    const todoDialog = document.getElementById(dialogId);
+    todoDialog.close();
+}

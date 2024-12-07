@@ -5,7 +5,7 @@ class Project(models.Model):
     description = models.TextField()
     # could be many to one relation ships
     github_link = models.URLField()
-    website_link = models.URLField()
+    website_link = models.URLField(blank=True, null=True)
     tech_stack = models.CharField(max_length=255)
 
     def __str__(self):
@@ -14,7 +14,7 @@ class Project(models.Model):
 # Project.objects.prefetch_related('images').all()
 class ProjectImages(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='project_images')
+    image = models.ImageField(upload_to='mediaProjects')
 
     def __str__(self):
         return self.project.title
