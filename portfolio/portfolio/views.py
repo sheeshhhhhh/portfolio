@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from . import models
 
 def home(request):
     return render(request, 'home.html', { "navigation": "home" })
@@ -58,6 +59,8 @@ def projects(request):
         }
     ]
 
+    project = models.Project.objects.prefetch_related('images').all()
+    print(project[0])
     return render(request, 'projects.html', { "navigation": "projects", "projects": projects })
 
 def about(request):
