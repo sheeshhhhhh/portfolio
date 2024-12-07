@@ -60,25 +60,11 @@ def projects(request):
     ]
 
     project = models.Project.objects.prefetch_related('images').all()
-    print(project[0])
     return render(request, 'projects.html', { "navigation": "projects", "projects": projects })
 
 def about(request):
 
-    techStack = [
-        { 'name': "Python", 'icon': "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png", 'knowledgeLevel': "Intermediate" },
-        { 'name': "Django", 'icon': "https://cdn.worldvectorlogo.com/logos/django.svg", 'knowledgeLevel': "Beginner" },
-        { 'name': "HTML", 'icon': "https://cdn.worldvectorlogo.com/logos/html-1.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "CSS", 'icon': "https://cdn.worldvectorlogo.com/logos/css-3.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "React", 'icon': "https://cdn.worldvectorlogo.com/logos/react-2.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "JavaScript", 'icon': "https://cdn.worldvectorlogo.com/logos/logo-javascript.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "TypeScript", 'icon': "https://cdn.worldvectorlogo.com/logos/typescript.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "Node.js", 'icon': "https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "Express", 'icon': "https://icon.icepanel.io/Technology/svg/Express.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "Nest Js", 'icon': "https://cdn.worldvectorlogo.com/logos/nestjs.svg", 'knowledgeLevel': "Intermediate" },
-        { 'name': "Tailwind CSS", 'icon': "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg", 'knowledgeLevel': "Advanced" },
-        { 'name': "Prisma", 'icon': "https://cdn.worldvectorlogo.com/logos/prisma-3.svg", 'knowledgeLevel': "Intermediate" },
-    ]
+    techStack = models.Skills.objects.all()
 
     tools = [
         { 'name': "Git", 'icon': "https://cdn.worldvectorlogo.com/logos/git-icon.svg", 'knowledgeLevel': "Advanced" },
@@ -88,10 +74,7 @@ def about(request):
         { 'name': "VS Code", 'icon': "https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg", 'knowledgeLevel': "Advanced" },
     ]
 
-    schools = [
-        { 'name': "Sta Clara Elementary School (kindergarten to Grade 6)", 'year': "2010-2016", 'Description': "This is where i learned how to read and write. I also learned the basic of mathematics and science. and also learned how to socialize with other people. as a kid i was very shy and introvert. i am always absent during this time as i was addicted to playing in computer shops" },
-        { 'name': "Sacred Heart Academy Sta Maria Bulacan (HighSchool to Senior HighSchool)", 'year': "2017-2022", 'Description': "During these years, I wasn’t consistent in school, nor in programming, as I was often distracted by video games. However, this was also the time when I discovered my passion for programming. While I didn’t learn it from school, my interest drove me to explore and study programming on my own, fueled by curiosity and determination during this years." },
-        { 'name': "Sti College, Sta. Maria (BSIT)", 'year': "2022-2024", 'Description': "This is where I ultimately became consistent in my studies, driven by my passion for programming and being in my dream course. I have learned a lot from the curriculum while also continuing to grow through self-study. My dedication has paid off, as I have been achieving good grades and gaining valuable skills for my future career." },
-    ]
+
+    schools = models.Education.objects.all()
 
     return render(request, 'about.html', { "navigation": "about", "techStack": techStack, "tools": tools, "schools": schools })

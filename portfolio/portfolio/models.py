@@ -19,16 +19,26 @@ class ProjectImages(models.Model):
     def __str__(self):
         return self.project.title
 
+#enum
+class KnowledgeLevel(models.TextChoices):
+    BEGINNER = 'Beginner'
+    INTERMEDIATE = 'Intermediate'
+    ADVANCED = 'Advanced'
+
 class Skills(models.Model):
     name = models.CharField(max_length=255)
     icon = models.TextField() # just a link
-    knowledgeLevel = models.CharField(max_length=255) # Beginner - Intermediate - Advanced
+    knowledgeLevel = models.CharField(
+        max_length=15,
+        choices=KnowledgeLevel.choices,
+        default=KnowledgeLevel.BEGINNER
+    ) 
 
     def __str__(self):
         return self.name
 
+
 class Education(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    start_date = models.DateField()
-    end_date = models.DateField()
+    year = models.CharField(max_length=255, null=True, blank=True)

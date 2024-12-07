@@ -31,89 +31,69 @@
         </article>
     </div>
     <div class="px-12 py-10 text-left text-amber-50 mx-3" aria-label="Skills">
-        <article>
-            <header data-aos="fade-down">
-                <div class="text-2xl font-bold text-white mb-5 flex gap-3 items-center">
-                    <div class="h-[1px] w-20 bg-amber-200"></div>
-                    Education
-                </div>
-            </header>
-            <section class="pb-12">
-                {% for school in schools %}
-                    <div class="relative flex py-4 ml-4 h-[140px] before:block before:h-[140px] before:absolute before:top-0 before:w-[2px] before:bg-[#2f353d]">
-                        <div class="flex items-center justify-center rounded-full h-11 w-11" aria-label="icon">
-                            <img class="h-9 w-9 p-1 mr-10 bg-[#212830] text-amber-200 z-20 rounded-full" src="{% static 'media/school.svg' %}" alt="education" />
-                        </div>
-                        <div aria-label="content">
-                            <h2 class="font-semibold text-lg">
-                                {{ school.name }}
-                            </h2>
-                            <div class="text-sm">
-                                <p class="mb-2 text-xs">
-                                    {{ school.year }}
-                                </p>
-                                <p>
-                                    {{ school.Description }}
-                                </p>
-                            </div>
-                        </div>
+
+        {% if schools %}
+            <article>
+                <header data-aos="fade-down">
+                    <div class="text-2xl font-bold text-white mb-5 flex gap-3 items-center">
+                        <div class="h-[1px] w-20 bg-amber-200"></div>
+                        Education
                     </div>
-                {% endfor %}
-            </section>
-        </article>
-        <article>
-            <header data-aos="fade-down">
-                <div class="text-2xl font-bold text-white mb-5 flex gap-3 items-center">
-                    <div class="h-[1px] w-20 bg-amber-200"></div>
-                    Skills
-                </div>
-            </header>
-            <section>
-                <div class="grid grid-cols-2 gap-4 pb-12 md:grid-cols-3 md:gap-8 xl:grid-cols-4 xl:gap-10 2xl:gap-12">
-                    {% for stack in techStack %}
-                        <div class="flex cursor-pointer items-center gap-2 rounded border border-amber-200 px-2 py-2 hover:bg-amber-200 hover:bg-opacity-10 md:gap-3 lg:px-3 h-[82px]">
-                            <div class="flex items-center justify-center lg:p-2">
-                                <img width="45" height="45" loading="lazy" class="h-10 w-10" src="{{ stack.icon }}" alt="{{ stack.name }}" />
-                            </div>
-                            <div class="flex items-center text-sm md:text-base lg:text-lg">
-                                <h1 class="font-medium text-secondary transition-all duration-300 translate-y-0">
-                                    {{ stack.name }} 
-                                </h1>
-                                <div class="opacity-0 absolute mt-5 text-[10px] text-amber-200 transition-all duration-300 md:text-xs lg:text-sm">
-                                    {{ stack.knowledgeLevel }}
+                </header>
+                    <section class="pb-12">
+                        {% for school in schools %}
+                            <div class="relative flex py-4 ml-4 h-[140px] before:block before:h-[140px] before:absolute before:top-0 before:w-[2px] before:bg-[#2f353d]">
+                                <div class="flex items-center justify-center rounded-full h-11 w-11" aria-label="icon">
+                                    <img class="h-9 w-9 p-1 mr-10 bg-[#212830] text-amber-200 z-20 rounded-full" src="{% static 'media/school.svg' %}" alt="education" />
+                                </div>
+                                <div aria-label="content">
+                                    <h2 class="font-semibold text-lg">
+                                        {{ school.name }}
+                                    </h2>
+                                    <div class="text-sm">
+                                        <p class="mb-2 text-xs">
+                                            {{ school.year }}
+                                        </p>
+                                        <p>
+                                            {{ school.description }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </section>
-        </article>
-        <article>
-            <header data-aos="fade-down">
-                <div class="text-2xl font-bold text-white mb-5 flex gap-3 items-center">
-                    <div class="h-[1px] w-20 bg-amber-200"></div>
-                    Tools
-                </div>
-            </header>
-            <section>
-                <div class="grid grid-cols-2 gap-4 pb-32 md:grid-cols-3 md:gap-8 xl:grid-cols-4 xl:gap-10 2xl:gap-12">
-                    {% for stack in tools %}
-                        <div class="flex cursor-pointer items-center gap-2 rounded border border-amber-200 px-2 py-2 hover:bg-amber-200 hover:bg-opacity-10 md:gap-3 lg:px-3 h-[82px]">
-                            <div class="flex items-center justify-center lg:p-2">
-                                <img width="45" height="45" loading="lazy" class="h-10 w-10" src="{{ stack.icon }}" alt="{{ stack.name }}" />
-                            </div>
-                            <div class="flex items-center text-sm md:text-base lg:text-lg">
-                                <h1 class="font-medium text-secondary transition-all duration-300 translate-y-0">
-                                    {{ stack.name }} 
-                                </h1>
-                                <div class="opacity-0 absolute mt-5 text-[10px] text-amber-200 transition-all duration-300 md:text-xs lg:text-sm">
-                                    {{ stack.knowledgeLevel }}
+                        {% endfor %}
+                    </section>
+            </article>
+        {% endif %}
+
+        {% if techStack %}
+            <article>
+                <header data-aos="fade-down">
+                    <div class="text-2xl font-bold text-white mb-5 flex gap-3 items-center">
+                        <div class="h-[1px] w-20 bg-amber-200"></div>
+                        Skills
+                    </div>
+                </header>
+                <section>
+                    <div class="grid grid-cols-2 gap-4 pb-12 md:grid-cols-3 md:gap-8 xl:grid-cols-4 xl:gap-10 2xl:gap-12">
+                        {% for stack in techStack %}
+                            <div class="flex cursor-pointer items-center gap-2 rounded border border-amber-200 px-2 py-2 hover:bg-amber-200 hover:bg-opacity-10 md:gap-3 lg:px-3 h-[82px]">
+                                <div class="flex items-center justify-center lg:p-2">
+                                    <img width="45" height="45" loading="lazy" class="h-10 w-10" src="{{ stack.icon }}" alt="{{ stack.name }}" />
+                                </div>
+                                <div class="flex items-center text-sm md:text-base lg:text-lg">
+                                    <h1 class="font-medium text-secondary transition-all duration-300 translate-y-0">
+                                        {{ stack.name }} 
+                                    </h1>
+                                    <div class="opacity-0 absolute mt-5 text-[10px] text-amber-200 transition-all duration-300 md:text-xs lg:text-sm">
+                                        {{ stack.knowledgeLevel }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </section>
-        </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            </article>
+        {% endif %}
+
     </div>
 {% endblock %}
