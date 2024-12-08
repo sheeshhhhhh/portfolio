@@ -1,14 +1,8 @@
 from django.contrib import admin
-from .models import Project, ProjectImages, Skills, Education
-
-# Inline model for ProjectImages
-class ProjectImagesInline(admin.TabularInline):
-    model = ProjectImages
-    extra = 1  # Number of empty forms to display for adding new images
+from .models import Project, Skills, Education
 
 # Admin configuration for Project
 class ProjectAdmin(admin.ModelAdmin):
-    inlines = [ProjectImagesInline]  
     list_display = ('title', 'github_link', 'website_link', 'tech_stack')  # Fields to display in the list view
     search_fields = ('title', 'description', 'github_link', 'website_link', 'tech_stack')  # Fields to search
     list_filter = ('tech_stack',)  

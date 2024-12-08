@@ -38,18 +38,20 @@
                         {% for project in projects %}
                             <div>
                                 <div class="flex flex-col items-center gap-2 rounded bg-[#1e1e1f] hover:bg-[#282828] border border-[#383838] rounded-xl text-amber-50 md:gap-3 px-5 py-5 transition-all hover:translate-y-[-10px]">
-                                    <div aria-label="images" class="flex h-12 w-12 items-center justify-center p-0 h-full w-full lg:p-0">
-                                        <img onclick="openDialog('dialog{{project.title}}')" loading="lazy" class="w-full h-48 object-cover rounded-xl" src="{{project.images.all.0.image.url}}" alt="" />
-                                    </div>
-                                    <div aria-label="content" class="w-full flex flex-col gap-2 items-center text-sm md:text-base lg:text-lg">
-                                        <h1 class="font-medium text-secondary">
+                                    {% if project.image %}
+                                        <div aria-label="images" class="flex h-12 w-12 items-center justify-center p-0 h-full w-full lg:p-0">
+                                            <img onclick="openDialog('dialog{{project.title}}')" loading="lazy" class="w-full h-48 object-cover rounded-xl" src="{{project.image.url}}" alt="" />
+                                        </div>
+                                    {% endif %}
+                                    <div aria-label="content" class="w-full flex flex-col gap-2 text-sm md:text-base lg:text-lg">
+                                        <h1 class="font-medium text-secondary text-left">
                                             {{ project.title }}
                                         </h1>
                                         <p class="w-full text-left text-[10px] text-[#c1c1c1] md:text-xs lg:text-sm">
                                             {{ project.description }}
                                         </p>
                                         <div class="w-full mt-4 text-normal text-sm text-left text-amber-200">
-                                            {{ project.techstack }}
+                                            {{ project.tech_stack }}
                                         </div>
                                         <div class="w-full flex justify-end">
                                             <div class="flex cursor-pointer items-end gap-2 text-primary">
@@ -65,25 +67,15 @@
                                         </div>
                                     </div>
                                     <dialog id="dialog{{project.title}}" class="dialog bg-transparent">
-                                        <div class="w-[1280px] w-full flex items-center gap-3 relative">
-                                            <div> 
-                                                <img onclick="closeDialog('dialog{{project.title}}')" aria-label="button close" class="text-white absolute top-0 right-0" src="{% static 'media/close.svg'%}" />
-                                            </div>
-                                            <div>
-                                                <button onclick="previousImage('images' + '{{project.title}}')" aria-label="button back" class="text-white ">
-                                                    <img src="{% static 'media/chevron-left.svg'%}" />
-                                                </button>
-                                            </div>
+                                        <div class="max-w-[1000px] w-full flex items-center gap-3 relative outline-none">
                                             <div class="flex space-x-7 items-center overflow-hidden w-[1000px]">
                                                 <div id="images{{project.title}}" class="flex transition-all duration-300 ease-in-out">
-                                                    {% for image in project.images.all %}
-                                                        <img class="w-full h-full object-cover" src="{{image.image.url}}" alt="" />
-                                                    {% endfor %}
+                                                        <img class="w-full h-full object-cover" src="{{project.image.url}}" alt="" />
                                                 </div>
                                             </div>
-                                            <button onclick="nextImage('images' + '{{project.title}}', '{{project.images.all|length}}')" aria-label="button next" class="text-white ">
-                                                <img src="{% static 'media/chevron-right.svg'%}" />
-                                            </button>
+                                            <div class="h-[461px]"> 
+                                                <img onclick="closeDialog('dialog{{project.title}}')" aria-label="button close" class="text-white relative top-0" src="{% static 'media/close.svg'%}" />
+                                            </div>
                                         </div>
                                     </dialog>
                                 </div>

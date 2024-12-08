@@ -1,0 +1,154 @@
+{% extends 'owneradmin/index.html' %}
+
+{% load static %}
+
+{% block title %}
+    Projects
+{% endblock %}
+
+{% block head %}
+    <style>
+        .errorlist li {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="w-full mx-auto">
+        <header class="max-w-[1700px] mx-auto flex justify-between items-center px-4">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white p-6">
+                Projects
+            </h1>
+            <div class="flex gap-4 items-center">                
+                <button onclick="openDialog()" type="button" class=" h-[50px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
+                    Add Project
+                </button>
+                <dialog id="addProjectDialog" class="rounded-lg dialog">
+                    <form enctype="multipart/form-data" method="post" action="/addproject/" class="w-[550px]  p-7 rounded-lg relative">
+                        {% csrf_token %}
+                        <div onclick="closeDialog()" class="absolute right-10">
+                            <img src="{% static 'media/close_black.svg' %}" />
+                        </div>
+                        <h2 class="font-bold text-2xl mb-3 text-blue-600">
+                            Add Project
+                        </h2>
+
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="id_image">Image</label>
+                            {{ form.image }}
+                            {{ form.image.errors }}
+                        </div>
+
+                        <!-- Title Field -->
+                        <div class="relative z-0 w-full mb-5 group">
+                            {{ form.title }}
+                            {{ form.title.errors }}
+                            <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Title
+                            </label>
+                        </div>
+
+                        <!-- Description Field -->
+                        <div class="relative z-0 w-full mb-5 group">
+                            <label for="id_description" class="block mb-2 text-sm font-medium text-gray-500">Description</label>
+                            {{ form.description }}
+                            {{ form.description.errors }}
+                        </div>
+
+                        <!-- GitHub Link Field -->
+                        <div class="relative z-0 w-full mb-5 group">
+                            {{ form.github_link }}
+                            {{ form.github_link.errors }}
+                            <label for="id_github_link" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                GitHub link
+                            </label>
+                        </div>
+
+                        <!-- Website Link Field -->
+                        <div class="relative z-0 w-full mb-5 group">
+                            {{ form.website_link }}
+                            {{ form.website_link.errors }}
+                            <label for="id_website_link" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Website link
+                            </label>
+                        </div>
+
+                        <!-- Tech Stack Field -->
+                        <div class="relative z-0 w-full mb-5 group">
+                            {{ form.tech_stack }}
+                            {{ form.tech_stack.errors }}
+                            <label for="id_tech_stack" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                Tech Stack (e.g., Django, React, Tailwind)
+                            </label>
+                        </div>
+
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    </form>
+                </dialog>
+            </div>
+        </header>
+
+        <div class="relative max-w-[1700px] mx-auto overflow-y-auto shadow-md sm:rounded-lg p-3 border">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Project Title
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            github link
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Website Link
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            tect Stack
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Edit
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Delete
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ project.title }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{project.github_link}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{project.website_link}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{project.tech_stack}}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{% url 'EditProject' project.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    Edit
+                                </a>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{% url 'DeleteProject' project.id %}" class="font-medium text-red-600 dark:text-blue-500 hover:underline">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{% static 'scripts/adminProject.js' %}"></script>
+    {% if notValid %}
+        <script>
+            openDialog();
+        </script>
+    {% endif %}
+{% endblock %}

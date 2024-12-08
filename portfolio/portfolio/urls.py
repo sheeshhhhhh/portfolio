@@ -26,6 +26,16 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('projects/', views.projects, name='projects'),
+
+    path('adminprojects/', views.Adminprojects, name='Adminprojects'),    
+    path('addproject/', views.AddProject, name='AddProject'),
+    path('deleteproject/<int:pk>/', views.DeleteProject, name='DeleteProject'),
+    path('editproject/<int:pk>/', views.EditProject, name='EditProject'),
+
+    path('adminskills/', views.AdminSkills, name='AddSkills'),
+    path('addskills/', views.AddSkills, name='AddSkills'),
+    path('deleteskills/<int:pk>/', views.DeleteSkills, name='DeleteSkills'),
+    path('editskills/<int:pk>/', views.EditSkills, name='EditSkills'),
 ]
 
 if settings.DEBUG:
