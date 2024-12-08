@@ -1,0 +1,47 @@
+{% extends 'owneradmin/index.html' %}
+
+{% load static %}
+
+{% block title %}
+    Skills
+{% endblock %}
+
+{% block content %}
+<header class="max-w-[950px] mx-auto flex justify-between items-center px-4">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white p-6">
+        Edit Education
+    </h1>
+</header>
+<main>
+    <form enctype="multipart/form-data" method="post" action="" class="max-w-[950px] mx-auto p-7 rounded-lg relative">
+        {% csrf_token %}
+
+        <!-- Name Field -->
+        <div class="relative z-0 w-full mb-5 group">
+            {{ form.name }}
+            {{ form.name.errors }}
+            <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                name
+            </label>
+        </div>
+
+        <!-- Name Field -->
+        <div class="relative z-0 w-full mb-5 group">
+            {{ form.year }}
+            {{ form.year.errors }}
+            <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                year
+            </label>
+        </div>
+
+        <!-- Icon Field -->
+        <div class="relative z-0 w-full mb-5 group">
+            <label for="id_description" class="block mb-2 text-sm font-medium text-gray-500">Description</label>
+            {{ form.description }}
+            {{ form.description.errors }}
+        </div>
+
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </form>
+</main>
+{% endblock %}

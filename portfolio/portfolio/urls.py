@@ -36,6 +36,11 @@ urlpatterns = [
     path('addskills/', views.AddSkills, name='AddSkills'),
     path('deleteskills/<int:pk>/', views.DeleteSkills, name='DeleteSkills'),
     path('editskills/<int:pk>/', views.EditSkills, name='EditSkills'),
+
+    path('admineducation/', views.AdminEducation, name='AdminEducation'),
+    path('addeducation/', views.AddEducation, name='AddEducation'),
+    path('deleteeducation/<int:pk>/', views.DeleteEducation, name='DeleteEducation'),
+    path('editeducation/<int:pk>/', views.EditEducation, name='EditEducation'),
 ]
 
 if settings.DEBUG:
