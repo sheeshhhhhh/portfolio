@@ -3,16 +3,16 @@
 {% load static %}
 
 {% block content %}
-    <div class="border border-[#383838] mx-3 mb-5 px-12 py-10 rounded-3xl bg-[#1e1e1f]" aria-label="About me">
+    <div class="bg-[#1e1e1f] px-5 py-5 md:px-12 md:py-10 text-left border border-[#383838] rounded-3xl text-amber-50 mx-3 mb-5" aria-label="About me">
         <article>
             <header data-aos="fade-down">
                 <div class="text-2xl font-bold text-white mb-5 flex items-center gap-3">
                     About Me
-                    <div class="h-[1px] bg-amber-200 w-96"></div>
+                    <div class="h-[1px] w-32 bg-amber-200 md:w-96 aos-init aos-animate"></div>
                 </div>
             </header>
-            <section class="text-lg text-justify flex flex-row gap-8 justify-left items-center">
-                <div class="w-7/12 text-white tracking-tight">
+            <section class="text-sm md:text-lg text-justify flex flex-col gap-4 lg:flex-row md:gap-8 md:justify-left md:items-center">
+                <div class="md:w-7/12">
                     <p data-aos="fade-left" data-aos-delay="300" class="mb-7">
                         I am a self-taught programmer passionate about technology and software development. 
                         My journey began with curiosity and determination, leading me to specialize in backend development, 
@@ -25,12 +25,12 @@
                     </p>
                 </div>
                 <div data-aos="fade-right" data-aos-delay="300" class="flex justify-center max-w-[470px] w-full">
-                    <img class="size-[360px] rounded-full mb-3" src="https://avatars.githubusercontent.com/u/97150877?v=4" />
+                    <img class="w-9/12 rounded-full mb-3 fadein-up" src="https://avatars.githubusercontent.com/u/97150877?v=4" />
                 </div>
             </section>
         </article>
     </div>
-    <div class="px-12 py-10 text-left text-amber-50 mx-3" aria-label="Skills">
+    <div class="px-5 py-5 md:px-12 md:py-10 text-left text-amber-50 mx-3" aria-label="Skills">
 
         {% if schools %}
             <article>
@@ -40,21 +40,18 @@
                         Education
                     </div>
                 </header>
-                    <section class="pb-12">
+                    <section class="md:pb-12">
                         {% for school in schools %}
-                            <div class="relative flex py-4 ml-4 h-[140px] before:block before:h-[140px] before:absolute before:top-0 before:w-[2px] before:bg-[#2f353d]">
-                                <div class="flex items-center justify-center rounded-full h-11 w-11" aria-label="icon">
-                                    <img class="h-9 w-9 p-1 mr-10 bg-[#212830] text-amber-200 z-20 rounded-full" src="{% static 'media/school.svg' %}" alt="education" />
-                                </div>
-                                <div aria-label="content">
-                                    <h2 class="font-semibold text-lg">
+                            <div class="relative flex flex-col md:flex-row py-4 md:ml-4 h-auto md:h-[140px] before:hidden md:before:block before:h-[140px] before:absolute before:top-0 before:w-[2px] before:bg-[#2f353d]">
+                                <div aria-label="content" class="pl-0 md:pl-11">
+                                    <h2 class="font-semibold text-sm md:text-lg">
                                         {{ school.name }}
                                     </h2>
                                     <div class="text-sm">
                                         <p class="mb-2 text-xs">
                                             {{ school.year }}
                                         </p>
-                                        <p>
+                                        <p class="md:text-sm">
                                             {{ school.description }}
                                         </p>
                                     </div>
@@ -66,7 +63,7 @@
         {% endif %}
 
         {% if techStack %}
-            <article>
+            <article class="mb-[80px] md:mb-0">
                 <header data-aos="fade-down">
                     <div class="text-2xl font-bold text-white mb-5 flex gap-3 items-center">
                         <div class="h-[1px] w-20 bg-amber-200"></div>

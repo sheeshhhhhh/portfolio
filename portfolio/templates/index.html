@@ -33,19 +33,19 @@
 </head>
 <body class="bg-[#121212] max-w-7xl mx-auto flex flex-col relative">
     <!-- navigation bar -->
-    <nav class="max-w-7xl px-5 py-[30px] md:fixed top-0 z-[40] w-screen backdrop-blur-md bg-[#121212] bg-opacity-80">
+    <nav class="max-w-7xl p-[30px] md:fixed top-0 z-[98] w-screen backdrop-blur-md bg-[#121212] bg-opacity-80">
         <div class="flex flex-wrap justify-between items-center">
             <h1 class="self-center text-lg font-bold text-[#ffdb70] whitespace-nowrap fadein-bot hover:text-amber-100 cursor-default">
                 Renato Santos
             </h1>
-            <div class=" max-w-[275px] flex flex-row space-x-8">
+            <div class=" max-w-[275px] flex flex-row space-x-8 hidden md:block">
                 <ul class="flex flex-row space-x-8 text-sm font-medium">
                     <li data-aos-delay="100" data-aos="fade-down" class="text-gray-700 hover:bg-gray-50 font-semibold cursor-pointer  
                     {% if navigation == 'home' %}
                         text-white after:block after:h-1 after:w-[43px] after:bg-[#ffdb70] after:mt-1 after:rounded-lg
                     {% else %}
                         md:hover:text-gray-500
-                    {% endif %} border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:p-0">
+                    {% endif %} md:hover:bg-transparent block pl-3 pr-4 py-2 md:p-0">
                         <a href="/">
                             Home
                         </a>
@@ -55,7 +55,7 @@
                         text-white after:block after:h-1 after:w-[43px] after:bg-[#ffdb70] after:mt-1 after:rounded-lg
                     {% else %}
                         md:hover:text-gray-500
-                    {% endif %} border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:p-0">
+                    {% endif %} md:hover:bg-transparent block pl-3 pr-4 py-2 md:p-0">
                     <a href="/about">
                         About
                     </a>    
@@ -65,9 +65,14 @@
                         text-white after:block after:h-1 after:w-[60px] after:bg-[#ffdb70] after:mt-1 after:rounded-lg
                     {% else %}
                         md:hover:text-gray-500
-                    {% endif %} border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:p-0">
+                    {% endif %} md:hover:bg-transparent  block pl-3 pr-4 py-2 md:p-0">
                         <a href="/projects">
                             Projects
+                        </a>
+                    </li>
+                    <li  class="text-gray-700 hover:bg-gray-50 font-semibold cursor-pointer md:hover:text-gray-500 md:hover:bg-transparent  block pl-3 pr-4 py-2 md:p-0">
+                        <a href="/adminskills">
+                            admin
                         </a>
                     </li>
                     <!-- <li class="fadein-bot text-gray-700 hover:bg-gray-50
@@ -86,10 +91,54 @@
             </div>
         </div>
     </nav>
-    <div class="mt-[100px]">
+    <div class="mt-[20px] md:mt-[100px]">
         {% block content %}
         {% endblock %}
     </div>
+    <footer class="block md:hidden fixed bottom-0 left-0 right-0 rounded-t-3xl border border-[#383838] bg-[#121212] bg-opacity-80 backdrop-blur-md backdrop-opacity-90">
+        <nav class="flex justify-around py-4 text-xs">
+            <li  class="text-gray-700 hover:bg-gray-50 font-semibold cursor-pointer  
+            {% if navigation == 'home' %}
+                text-white after:block after:h-1 after:w-[35px] after:bg-[#ffdb70] after:mt-1 after:rounded-lg
+            {% else %}
+                md:hover:text-gray-500
+            {% endif %} md:hover:bg-transparent block pl-3 pr-4 py-2 md:p-0">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            <li  class="text-gray-700 hover:bg-gray-50 font-semibold cursor-pointer  
+            {% if navigation == 'about' %}
+                text-white after:block after:h-1 after:w-[35px] after:bg-[#ffdb70] after:mt-1 after:rounded-lg
+            {% else %}
+                md:hover:text-gray-500
+            {% endif %} md:hover:bg-transparent block pl-3 pr-4 py-2 md:p-0">
+            <a href="/about">
+                About
+            </a>    
+            </li>
+            <li  class="text-gray-700 hover:bg-gray-50 font-semibold cursor-pointer  
+            {% if navigation == 'projects' %}
+                text-white after:block after:h-1 after:w-[40px] after:bg-[#ffdb70] after:mt-1 after:rounded-lg
+            {% else %}
+                md:hover:text-gray-500
+            {% endif %} md:hover:bg-transparent  block pl-3 pr-4 py-2 md:p-0">
+                <a href="/projects">
+                    Projects
+                </a>
+            </li>
+            <li  class="text-gray-700 hover:bg-gray-50 font-semibold cursor-pointer  
+            {% if navigation == 'projects' %}
+                text-white after:block after:h-1 after:w-[40px] after:bg-[#ffdb70] after:mt-1 after:rounded-lg
+            {% else %}
+                md:hover:text-gray-500
+            {% endif %} md:hover:bg-transparent  block pl-3 pr-4 py-2 md:p-0">
+                <a href="/adminskills">
+                    admin
+                </a>
+            </li>
+        </nav>
+    </footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
