@@ -19,7 +19,7 @@
         <div>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="id_image">Image</label>
             {% if Initialimage %}
-             <img class="h-auto max-w-lg rounded-lg" src="{{Initialimage}}" alt="image description">
+             <img id="image_preview" class="h-auto max-w-lg rounded-lg" src="{{Initialimage}}" alt="image description">
             {% endif %}
             {{ form.image }}
             {{ form.image.errors }}
@@ -73,4 +73,25 @@
         </button>
     </form>
 </main>
+{% endblock %}
+
+{% block script %}
+    <script>
+        const imageInput = document.querySelector('#id_image');
+        const image = document.querySelector('#image_preview');
+
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.addEventListener('load', function() {
+                    image.src = reader.result;
+                });
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 {% endblock %}
