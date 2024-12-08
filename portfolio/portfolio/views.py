@@ -53,7 +53,7 @@ def projects(request):
                 'https://res-console.cloudinary.com/dslm0pp9s/media_explorer_thumbnails/d67513484dc299c711a4022879a85611/detailed',
                 'https://res-console.cloudinary.com/dslm0pp9s/media_explorer_thumbnails/cd3c4df5a7e481e5bcbf5bb2588c3c7e/detailed',
                 ],
-            'github': 'tobe put',
+            'github': 'https://github.com/sheeshhhhhh/portfolio',
             'websitelink': '',
             'techstack': 'Django, HTML, CSS, Tailwind CSS, JavaScript'
         }
