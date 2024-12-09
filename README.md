@@ -3,8 +3,6 @@
 ## FOR WHAT REASON?
 This is my portfolio project that will also serve as my main portfolio.
 
-[Click this link to visit my portfolio](URL)
-
 ## TO RUN AND INITIALIZE
 
 # linux
