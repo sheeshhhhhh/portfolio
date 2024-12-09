@@ -36,13 +36,13 @@ ALLOWED_HOSTS = [
     'portfolio-2655.onrender.com',
     '127.0.0.1',
     'f3stqyc5-b8ejonif-szmn3au088cs.ac3-preview.marscode.dev',
-    'https://renatosantos.pythonanywhere.com/'
+    'renatosantos.pythonanywhere.com/'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     # for origin and csrf_token in the forms
     'portfolio-2655.onrender.com',
-    'https://renatosantos.pythonanywhere.com/',
+    'renatosantos.pythonanywhere.com/',
     'https://f3stqyc5-b8ejonif-szmn3au088cs.ac3-preview.marscode.dev'
 ]
 
