@@ -61,7 +61,6 @@ INSTALLED_APPS = [
 ROOT_URLCONF = 'portfolio.urls'
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
