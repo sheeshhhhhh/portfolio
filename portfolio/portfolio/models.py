@@ -1,11 +1,10 @@
-from cloudinary_storage.storage import MediaCloudinaryStorage
 from django.db import models
 
 
 class Project(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='images', storage=MediaCloudinaryStorage, null=True, blank=True)
+    image = models.ImageField(upload_to='images', null=True, blank=True)
     github_link = models.URLField()
     website_link = models.URLField(blank=True, null=True)
     tech_stack = models.CharField(max_length=255)

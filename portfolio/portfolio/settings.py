@@ -35,12 +35,14 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'portfolio-2655.onrender.com',
     '127.0.0.1',
-    'f3stqyc5-b8ejonif-szmn3au088cs.ac3-preview.marscode.dev'
+    'f3stqyc5-b8ejonif-szmn3au088cs.ac3-preview.marscode.dev',
+    'RenatoSantos.pythonanywhere.com'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     # for origin and csrf_token in the forms
-    'portfolio-2655.onrender.com'
+    'portfolio-2655.onrender.com',
+    'RenatoSantos.pythonanywhere.com',
     'https://f3stqyc5-b8ejonif-szmn3au088cs.ac3-preview.marscode.dev'
 ]
 
@@ -54,8 +56,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cloudinary_storage',
-    'cloudinary',
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
@@ -95,16 +95,10 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -143,35 +137,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Replace BASE_DIR with your project base directory variable
 ]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
 
 # Path where media is stored
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = 'https://res.cloudinary.com/' + env('CLOUDINARY_CLOUD_NAME') + '/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': env('CLOUDINARY_API_KEY'),
-    'API_SECRET': env('CLOUDINARY_API_SECRET')
-}
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
+#     'API_KEY': env('CLOUDINARY_API_KEY'),
+#     'API_SECRET': env('CLOUDINARY_API_SECRET')
+# }
 # Base url to serve media files
 MEDIA_URL = '/media/'
-
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    ROOT_URLCONF = 'portfolio.portfolio.urls'
-
-
